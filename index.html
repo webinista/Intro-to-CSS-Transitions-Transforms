@@ -59,7 +59,6 @@
 
         #HowBrowsersWork img{
             display:block;
-            height: 277px;
         }
 
         #HowBrowsersWork h3{
@@ -290,7 +289,6 @@
             content: '';
         }
 
-
         figure.transordemof{
             width:150px;
             height:150px;
@@ -367,7 +365,7 @@
                     transform: rotate3d(0,150,0,45deg);
         }
         #podemo{border-left:5px solid #c09;}
-
+        .clear{clear:both;}
 	</style>
 </head>
 <body class="list">
@@ -473,11 +471,11 @@
                     <td>2.1+</td>
                 </tr>
 
-            </body>
+            </tbody>
 		</table>
         <p>Transitions are supported by all major browsers except Opera Mini.</p>
         <p class="note txtright"><a href="http://caniuse.com/#feat=css-transitions" target="_blank">Source</a></p>
-        </ul>
+
 
 		</section>
 
@@ -495,11 +493,12 @@
 	<div class="slide" id="HowBrowsersWork"><div>
 		<section>
 			<header>
-				<h2>How browsers work</h2>
+				<h2>How browsers work*</h2>
 			</header>
             <div>
-                <img src="http://localhost/minnewebcon/images/browsers.svg" alt="Browsers have a rendering engine and a JavaScript engine." type="svg+xml" style="margin:auto;display:block;" width="535" height="320">
+                <img src="images/browsers.png" alt="Browsers have a rendering engine and a JavaScript engine." style="margin:auto;display:block;" width="559" height="331">
             </div>
+            <p class="note clear txtright">*Simplified. <a href="http://taligarsiel.com/Projects/howbrowserswork1.htm">A fuller explanation</a>.</p>
 		</section>
 	</div></div>
 
@@ -637,7 +636,7 @@
                 <li>percentages</li>
 	            <li>colors</li>
 	        </ul>
-            <p class="note">See the <a href="http://www.w3.org/TR/css3-transitions/#animatable-properties-" target="_blank">specification</a> for an exact list</a>.</p>
+            <p class="note">See the <a href="http://www.w3.org/TR/css3-transitions/#animatable-properties-" target="_blank">specification</a> for an exact list.</p>
 		</section>
 	</div></div>
 
@@ -751,7 +750,7 @@ transEnd = endNames[ Modernizr.prefixed('transition') ];
                     <td class="no">No</td>
                     <td>3.0+</td>
                 </tr>
-            </body>
+            </tbody>
 		</table>
         <ul>
             <li>2D Transforms supported by all major browsers except Opera Mini.</li>
@@ -798,7 +797,7 @@ transEnd = endNames[ Modernizr.prefixed('transition') ];
             <p>Nullam mollis nisl et est molestie quis lacinia leo imperdiet. Vestibulum faucibus varius velit, in pretium sem consequat et. Mauris pharetra dui quis tortor ultricies et convallis purus tincidunt. Curabitur ullamcorper vehicula ultrices. Vestibulum elit leo, fermentum rutrum convallis quis, gravida imperdiet risus.</p>
 
             <p class="txtright">
-                <button id="stackingbtn" type="button">Toggle transform</button>
+                <button id="stackingbtn">Toggle transform</button>
             </p>
             </div>
 
@@ -885,13 +884,13 @@ transEnd = endNames[ Modernizr.prefixed('transition') ];
 			</header>
             <div class="stdemowrap">
                 <div class="stdemo"></div>
-                <p>
+                <form>
                     <button type="button" id="rotate">rotate</button>
                     <button type="button" id="skew">skew</button>
                     <button type="button" id="scale">scale</button>
                     <button type="button" id="translate">translate</button>
                     <button type="button">clear</button>
-                </p>
+                </form>
             </div>
 		</section>
 	</div></div>
@@ -1071,7 +1070,7 @@ transEnd = endNames[ Modernizr.prefixed('transition') ];
 	<li><a href="http://dev.w3.org/csswg/css3-transforms/">CSS Transforms, Editors Draft</a></li>
 	<li><a href="http://www.westciv.com/tools/transforms/">Westciv Transforms Tool</a></li>
 	<li><a href="http://modernizr.com/">Modernizr</a></li>
-    <li><a href="http://desandro.github.com/3dtransforms/">Intro to CSS 3D transforms</li>
+    <li><a href="http://desandro.github.com/3dtransforms/">Intro to CSS 3D transforms</a></li>
 </ul>
 		</section>
 	</div></div>
@@ -1087,103 +1086,109 @@ transEnd = endNames[ Modernizr.prefixed('transition') ];
 	<script src="demos/js.js"></script>
 
 	<script>
+
     (function(){
 
-       var cbdt  = document.getElementById('containbtn'),
-           scbt  = document.getElementById('stackingbtn'),
-            tbt  = document.getElementById('translatebtn'),
-           pdbt  = document.getElementById('perspectivedemobtn'),
-          pddbt  = document.getElementById('perspectiveorigindemobtn'),
-        stdemos  = document.querySelectorAll('.stdemowrap button'),
-        transformorigin = document.getElementById('transformtrigger'),
-        pox = document.getElementById('po_X'),
-        poy = document.getElementById('po_Y'),
-        runtrans;
+         var cbdt  = document.getElementById('containbtn'),
+               scbt  = document.getElementById('stackingbtn'),
+                tbt  = document.getElementById('translatebtn'),
+               pdbt  = document.getElementById('perspectivedemobtn'),
+              pddbt  = document.getElementById('perspectiveorigindemobtn'),
+            stdemos  = document.querySelectorAll('.stdemowrap button'),
+            transformorigin = document.getElementById('transformtrigger'),
+            pox = document.getElementById('po_X'),
+            poy = document.getElementById('po_Y'),
+            runtrans;
 
 
-       cbdt.addEventListener('click', function(){
-           Lib.toggleClass(document.getElementById('containingblockdemo'),'transform');
-           Lib.removeclass(document.getElementById('containingblocktext'),'hidden');
-       }, false);
+           cbdt.addEventListener('click', function(){
+            console.log('containingblockdemo');
+               Lib.toggleClass(document.getElementById('containingblockdemo'),'transform');
+               Lib.removeclass(document.getElementById('containingblocktext'),'hidden');
+           }, false);
 
-       scbt.addEventListener('click', function(){
-            Lib.toggleClass( document.getElementById('lipsumscale') ,'transform');
-       }, false);
+           scbt.addEventListener('click', function(){
+                Lib.toggleClass( document.getElementById('lipsumscale') ,'transform');
+           }, false);
 
-       runtrans = function(e){
-           var  s = stdemos,
-                transobj = e.target.parentNode.previousElementSibling,
-                howmanytoremove = Lib.numclasses(transobj),
-                classes = Lib.getclasses(transobj);
+           runtrans = function(e){
+               var  s = stdemos,
+                    transobj = e.target.parentNode.previousElementSibling,
+                    howmanytoremove = Lib.numclasses(transobj),
+                    classes = Lib.getclasses(transobj);
 
-           if( howmanytoremove > 1 ){
-                for(var x = 1; x < howmanytoremove; x++){
-                    if( classes[x] != 'stdemo' ){
-                        Lib.removeclass(transobj, classes[x]);
+               if( howmanytoremove > 1 ){
+                    for(var x = 1; x < howmanytoremove; x++){
+                        if( classes[x] != 'stdemo' ){
+                            Lib.removeclass(transobj, classes[x]);
+                        }
                     }
+               }
+
+               if(e.target.id != ''){
+                    Lib.addclass(transobj, e.target.id);
+               }
+           }
+
+
+
+           for(var o=0; o < stdemos.length; o++){
+                stdemos[o].addEventListener('click', runtrans, false);
+           }
+
+           transformorigin.addEventListener('click', function(e){
+                var demos = document.getElementsByClassName('transordemof'),
+                    len = demos.length;
+
+                for(var x=0; x < len; x++){
+                    Lib.toggleClass(demos[x],'rotate');
                 }
-           }
 
-           if(e.target.id != ''){
-                Lib.addclass(transobj, e.target.id);
-           }
-       }
-
-       for(var o=0; o < stdemos.length; o++){
-            stdemos[o].addEventListener('click', runtrans, false);
-       }
-
-       transformorigin.addEventListener('click', function(e){
-            var demos = document.getElementsByClassName('transordemof'),
-                len = demos.length;
-
-            for(var x=0; x < len; x++){
-                Lib.toggleClass(demos[x],'rotate');
-            }
-
-       }, false);
+           }, false);
 
 
-    pox.addEventListener('change', function(e){
-        var y = document.getElementById('po_Y'),
-            po = document.getElementById('podemowrap'),
-            lbl = document.getElementById('po_l_Y'),
-            val;
+        pox.addEventListener('change', function(e){
+            var y = document.getElementById('po_Y'),
+                po = document.getElementById('podemowrap'),
+                lbl = document.getElementById('po_l_Y'),
+                val;
 
-            val = e.target.value+'px '+y.value+'px';
-            po.style[Modernizr.prefixed('perspectiveOrigin')] = val;
+                val = e.target.value+'px '+y.value+'px';
+                po.style[Modernizr.prefixed('perspectiveOrigin')] = val;
 
-            var lt = document.createTextNode(e.target.value);
-            lbl.replaceChild(lt,lbl.childNodes[0]);
-
-
-    }, false);
-
-    poy.addEventListener('change', function(e){
-
-        var x  = document.getElementById('po_X'),
-            po = document.getElementById('podemowrap'),
-            lbl = document.getElementById('po_l_X'),
-            val;
-
-            val = x.value+'px '+e.target.value+'px';
-            po.style[Modernizr.prefixed('perspectiveOrigin')] = val;
-
-            var lt = document.createTextNode(e.target.value);
-            lbl.replaceChild(lt,lbl.childNodes[0]);
+                var lt = document.createTextNode(e.target.value);
+                lbl.replaceChild(lt,lbl.childNodes[0]);
 
 
         }, false);
 
-    document.getElementById('poform').addEventListener('reset', function(e){
-         po = document.getElementById('podemowrap');
+        poy.addEventListener('change', function(e){
 
-         po.style[Modernizr.prefixed('perspectiveOrigin')] = '50% 50%';
+            var x  = document.getElementById('po_X'),
+                po = document.getElementById('podemowrap'),
+                lbl = document.getElementById('po_l_X'),
+                val;
 
-         document.getElementById('po_l_Y').innerHTML = '0';
-         document.getElementById('po_l_X').innerHTML = '0';
+                val = x.value+'px '+e.target.value+'px';
+                po.style[Modernizr.prefixed('perspectiveOrigin')] = val;
 
-    }, false);
+                var lt = document.createTextNode(e.target.value);
+                lbl.replaceChild(lt,lbl.childNodes[0]);
+
+
+            }, false);
+
+        document.getElementById('poform').addEventListener('reset', function(e){
+             po = document.getElementById('podemowrap');
+
+             po.style[Modernizr.prefixed('perspectiveOrigin')] = '50% 50%';
+
+             document.getElementById('po_l_Y').innerHTML = '0';
+             document.getElementById('po_l_X').innerHTML = '0';
+
+        }, false);
+
+
 
     })();
 

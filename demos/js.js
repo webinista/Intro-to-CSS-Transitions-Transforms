@@ -7,41 +7,6 @@ window.Lib = (function(window,document){
 
     Lib = {};
 
-    /* Checks whether the range and number form input types are supported */
-    Lib.hasrange = function(){
-        var range = document.createElement('input');
-        range.setAttribute('type','range');
-        return ( range.type == 'range' );
-    }
-
-    Lib.hasnumber = function(){
-        var range = document.createElement('input');
-        range.setAttribute('type','number');
-        return ( range.type == 'number' );
-    }
-
-    /* Fixes if the above are true */
-    Lib.fixrange = function(){
-        if( !this.hasrange() ){
-           var ranges = document.querySelectorAll('input[type=range]');
-           var x, num = ranges.length;
-           for(x = 0; x < num; x++){
-             ranges[x].setAttribute('size',6);
-           }
-        }
-    }
-
-    Lib.fixnumber = function(){
-        if( !this.hasnumber() ){
-           var numby = document.querySelectorAll('input[type=number]');
-           var x, num = numby.length;
-
-           for(x = 0; x < num; x++){
-             numby[x].setAttribute('size',6);
-           }
-        }
-    }
-
     Lib.removeclass = function(el,classname){
         if(el.classList !== undefined ){
             el.classList.remove(classname);

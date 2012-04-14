@@ -44,7 +44,7 @@
 		var i, l = slideList.length,
 			currentSlideId = url.hash.substr(1);
 
-		for (i = 0; i < l; ++i) {
+        for (i = 0; i < l; ++i) {
 			if (currentSlideId === slideList[i].id) {
 				return i;
 			}
