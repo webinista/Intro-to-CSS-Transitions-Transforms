@@ -1,0 +1,1194 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<title>An Introduction to CSS transitions and transforms, MinneWebCon</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=1274, user-scalable=no">
+	<link rel="stylesheet" href="themes/ribbon/styles/style.css">
+	  <!--
+		To apply styles to the certain slides
+		use slide ID to get needed elements
+		-->
+	<style>
+	    .slide section{
+	        position:relative;
+	    }
+        .slide p, .slide header{
+            margin-bottom:30px;
+        }
+        .slide h2 a{text-decoration: none;}
+
+        .hidden{visibility: hidden;}
+
+	    #Cover section{
+	    	background-color: #c00;
+	    	background-image:     -o-linear-gradient(bottom, #b00,#f00);
+	    	background-image: -khtml-linear-gradient(bottom, #b00,#f00);
+	        background-image:   -moz-linear-gradient(bottom, #b00,#f00);
+            background-image:    -ms-linear-gradient(bottom, #b00,#f00);
+            background-image:-webkit-linear-gradient(bottom, #b00,#f00);
+	    }
+	    #Cover h2, #Cover h3{
+	        color:#FFF;
+	        text-shadow: 1px 1px 3px #300;
+	    }
+		#Cover h2 {
+			font-size:70px;
+		}
+
+		#Cover h3 {
+			font-size:40px;
+			text-align:right;
+			margin-top: 70px;
+		}
+
+		#FitToWidth h2,
+		#FitToHeight h2 {
+			color:#FFF;
+			text-align:center;
+			}
+
+		#HowBrowsersWork div{
+		    float:left;
+		}
+
+		#HowBrowsersWork .imagewrapper{
+            margin-left: 100px;
+		}
+
+
+        #HowBrowsersWork img{
+            display:block;
+            height: 277px;
+        }
+
+        #HowBrowsersWork h3{
+			font-size:2rem;
+			color:#999;
+		}
+
+        .plus{
+            margin-top:1em;
+            font-size: 80px;
+        }
+
+        .slide blockquote em{
+            font-style:normal;
+            font-weight: 600;
+        }
+
+        .slide .source{
+            position:absolute;
+            bottom: 4em;
+        }
+        .slide .source a{
+            color: #aaa;
+        }
+
+        .twocol{
+             -khtml-columns: auto 2;
+            -webkit-columns: auto 2;
+               -moz-columns: auto 2;
+                -ms-columns: auto 2;
+                    columns: auto 2; /* Opera */
+        }
+
+        .txtright{text-align: right;}
+        .slide.extrashout header{color:#600;}
+
+        .transex2{
+            width:150px;
+            height: 150px;
+            border:1px dashed #000;
+            background: url(images/centerx.png) center center no-repeat;
+        }
+
+        .transex2 div{
+             background: rgba(255,204,0,.5);
+             text-align:center;
+             line-height: 150px;
+        }
+
+        #containingblockdemo{
+            width:250px;
+            height: 250px;
+            background: rgba(255,102,255,.7);
+        }
+
+        #containingblockdemo.transform{
+            -webkit-transform: skew(-35deg);
+                 -o-transform: skew(-35deg);
+               -moz-transform: skew(-35deg);
+                -ms-transform: skew(-35deg);
+        }
+
+        #unskew{
+            width: 200px;
+            height: 200px;
+            background: rgb(153,255,0);
+            font-size: 1.5rem;
+            position:absolute;
+            left: 25px;
+            top:  260px;
+        }
+
+        .transform #unskew{
+            top: 25px;
+        }
+
+        #translateexample div{
+            -webkit-transform: translate(100px,100px);
+                 -o-transform: translate(100px,100px);
+               -moz-transform: translate(100px,100px);
+                -ms-transform: translate(100px,100px);
+        }
+
+        #stackingcontextdemo{
+            font-size:12px;
+            line-height:1.5;
+        }
+
+        #stackingcontextdemo p{
+            margin:0rem 1rem 1rem 0;
+        }
+
+        #lipsumscale{
+            background:#39f;
+            width: 150px;
+            height: 150px;
+            float: left;
+            margin: 0 1rem 1rem 0
+        }
+
+        #lipsumscale.transform{
+            -webkit-transform: scale(1.8) translate(250px,50px);
+                 -o-transform: scale(1.8) translate(250px,50px);
+               -moz-transform: scale(1.8) translate(250px,50px);
+                -ms-transform: scale(1.8) translate(250px,50px);
+        }
+
+        .nomargin{
+           margin:0;
+        }
+        .center{display:block;margin:auto;}
+
+        th{font-weight: bold;line-height:1;}
+        td,th{padding: 5px;border:1px solid #ccc; text-align:center}
+        td{color:#0c0;}
+        td.no{color:#b20;}
+        table{
+            font-size:1.2rem;
+            width:100%;
+            font: 1rem / 1 helvetica,arial,sans-serif;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+        .slide h2 code{
+            background:transparent;
+        }
+
+        .slide{position: relative;}
+
+        .slidedemo{
+            position:relative;
+        }
+
+        .stdemowrap,
+        #podemowrap{
+            text-align:center;
+            border-right: 5px solid #fff;
+        }
+
+        #ThreeDTransformExamples .stdemowrap,
+        #podemowrap{
+         -webkit-perspective: 800px;
+              -o-perspective: 800px;
+            -moz-perspective: 800px;
+             -ms-perspective: 800px;
+        }
+
+        .stdemowrap button,
+        #podemowrap button{
+            -webkit-transform: scale(1.2);
+                 -o-transform: scale(1.2);
+               -moz-transform: scale(1.2);
+                -ms-transform: scale(1.2);
+                    transform: scale(1.2);
+            margin-right: 1rem;
+        }
+
+        .stdemo,
+        #podemo{
+            width: 250px;
+            height: 250px;
+            background: hsl(210, 100%, 50%);
+            margin: 0 auto 2rem auto;
+        }
+
+        .stdemo.scale{
+            -webkit-transform: scale(.6);
+                 -o-transform: scale(.6);
+               -moz-transform: scale(.6);
+                -ms-transform: scale(.6);
+                    transform: scale(.6);
+        }
+        .stdemo.rotate{
+            -webkit-transform: rotate(45deg);
+                 -o-transform: rotate(45deg);
+               -moz-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                    transform: rotate(45deg);
+        }
+        .stdemo.skew{
+            -webkit-transform: skew(-45deg);
+                 -o-transform: skew(-45deg);
+               -moz-transform: skew(-45deg);
+                -ms-transform: skew(-45deg);
+                    transform: skew(-45deg);
+        }
+        .stdemo.translate{
+            -webkit-transform: translate(-270px,100px);
+                 -o-transform: translate(-270px,100px);
+               -moz-transform: translate(-270px,100px);
+                -ms-transform: translate(-270px,100px);
+                    transform: translate(-270px,100px);
+        }
+
+        .stdemo.scale3d{
+            -webkit-transform: scale3d(1.1,.6,.5);
+                 -o-transform: scale3d(1.1,.6,.5);
+               -moz-transform: scale3d(1.1,.6,.5);
+                -ms-transform: scale3d(1.1,.6,.5);
+                    transform: scale3d(1.1,.6,.5);
+        }
+        .stdemo.rotate3d{
+            -webkit-transform: rotate3d(100,150,90,45deg);
+                 -o-transform: rotate3d(100,150,90,45deg);
+               -moz-transform: rotate3d(100,150,90,45deg);
+                -ms-transform: rotate3d(100,150,90,45deg);
+                    transform: rotate3d(100,150,90,45deg);
+        }
+
+        .stdemo.translate3d{
+            -webkit-transform: translate3d(-270px,30px,-200px);
+                 -o-transform: translate3d(-270px,30px,-200px);
+               -moz-transform: translate3d(-270px,30px,-200px);
+                -ms-transform: translate3d(-270px,30px,-200px);
+                    transform: translate3d(-270px,30px,-200px);
+        }
+        .stdemo.perspective{
+            -webkit-transform: perspective(200) rotate3d(100,150,90,35deg);
+                 -o-transform: perspective(200) rotate3d(100,150,90,35deg);
+               -moz-transform: perspective(200) rotate3d(100,150,90,35deg);
+                -ms-transform: perspective(200) rotate3d(100,150,90,35deg);
+                    transform: perspective(200) rotate3d(100,150,90,35deg);
+        }
+        .note a{color:#ccc;}
+        code.nobg{background-color:transparent;}
+        .slide ul.nobullet > li::before,
+        .slide pre code::before {
+            content: '';
+        }
+
+
+        figure.transordemof{
+            width:150px;
+            height:150px;
+            display:block;
+            float:left;
+            background:#b20;
+            margin: 2rem 10rem 0rem 5rem;
+            line-height: 150px;
+            text-align:center;
+            color: #fff;
+            -webkit-transition: -webkit-transform 500ms linear;
+               -moz-transition: -moz-transform 500ms linear;
+                -ms-transition: -ms-transform 500ms linear;
+                 -o-transition: -o-transform 500ms linear;
+                    transition: transform 500ms linear;
+        }
+
+       figure.transordemof.rotate{
+            -webkit-transition: -webkit-transform 500ms linear;
+               -moz-transition: -moz-transform 500ms linear;
+                -ms-transition: -ms-transform 500ms linear;
+                 -o-transition: -o-transform 500ms linear;
+                    transition: transform 500ms linear;
+
+            -webkit-transform: rotate(45deg);
+                 -o-transform: rotate(45deg);
+               -moz-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                    transform: rotate(45deg);
+
+        }
+       figure.transordemof.rotate p{
+            -webkit-transform: rotate(-45deg);
+                 -o-transform: rotate(-45deg);
+               -moz-transform: rotate(-45deg);
+                -ms-transform: rotate(-45deg);
+                    transform: rotate(-45deg);
+       }
+
+       figure.transordemof.to0{
+            -webkit-transform-origin: 0% 0%;
+                 -o-transform-origin: 0% 0%;
+               -moz-transform-origin: 0% 0%;
+                -ms-transform-origin: 0% 0%;
+                    transform-origin: 0% 0%;
+        }
+       figure.transordemof.to50{
+            -webkit-transform-origin: 50% 50%;
+                 -o-transform-origin: 50% 50%;
+               -moz-transform-origin: 50% 50%;
+                -ms-transform-origin: 50% 50%;
+                    transform-origin: 50% 50%;
+        }
+       figure.transordemof.to100{
+            -webkit-transform-origin: 100% 100%;
+                 -o-transform-origin: 100% 100%;
+               -moz-transform-origin: 100% 100%;
+                -ms-transform-origin: 100% 100%;
+                    transform-origin: 100% 100%;
+        }
+       figure.transordemof.to200{
+            -webkit-transform-origin: 200% 200%;
+                 -o-transform-origin: 200% 200%;
+               -moz-transform-origin: 200% 200%;
+                -ms-transform-origin: 200% 200%;
+                    transform-origin: 200% 200%;
+        }
+
+       #podemo.rotate{
+            -webkit-transform: rotate3d(0,150,0,60deg);
+                 -o-transform: rotate3d(0,150,0,45deg);
+               -moz-transform: rotate3d(0,150,0,60deg);
+                -ms-transform: rotate3d(0,150,0,45deg);
+                    transform: rotate3d(0,150,0,45deg);
+        }
+        #podemo{border-left:5px solid #c09;}
+
+	</style>
+</head>
+<body class="list">
+	<header class="caption">
+		<h1>An Introduction to CSS transitions and transforms, MinneWebCon, 2012</h1>
+		<p>Tiffany B. Brown, Opera Software</p>
+	</header>
+
+	<div class="slide cover" id="Cover"><div>
+		<section>
+			<header>
+				<h2>An Introduction to CSS transitions and transforms</h2>
+				<h3>Tiffany B. Brown (@webinista)<br>Opera Software Developer Relations Team<br>MinneWebCon 2012<br></h3>
+			</header>
+		</section>
+	</div></div>
+
+    <div class="slide shout" id="CaveatsShout"><div>
+		<section>
+			<header>
+				<h2>First,<br>the caveats&#8230;</h2>
+			</header>
+		</section>
+	</div></div>
+
+    <div class="slide shout extrashout" id="ItIsAllExperimental"><div>
+		<section>
+			<header>
+				<h2>This stuff is experimental and subject to change.</h2>
+			</header>
+		</section>
+	</div></div>
+
+    <div class="slide shout extrashout" id="NeedPrefixes"><div>
+		<section>
+			<header>
+				<h2>All properties<br>must be prefixed.</h2>
+			</header>
+		</section>
+	</div></div>
+
+
+    <div class="slide shout extrashout" id="NotEverythingIsSupportedEverywhere"><div>
+		<section>
+			<header>
+				<h2>Not all browsers support all features (yet).</h2>
+			</header>
+		</section>
+	</div></div>
+
+<div class="slide" id="WhatAreWeTalkingAbout"><div>
+		<section>
+			<header>
+				<h2>What are we talking about?</h2>
+			</header>
+			<ul>
+			    <li><b>Transitions:</b> Simple, implicit animations between two values.</li>
+                <li><b>Transforms:</b> Modifying elements along the X, Y and/or Z axis.</li>
+            </ul>
+		</section>
+	</div></div>
+
+	<div class="slide shout" id="Transitions"><div>
+		<section>
+			<header>
+				<h2>Transitions</h2>
+			</header>
+		</section>
+	</div></div>
+
+    <div class="slide demo" id="TransitionsBrowserSupport"><div>
+		<section>
+			<header>
+				<h2>Browser Support</h2>
+			</header>
+
+			<table style="border:1px solid #ccc;">
+            <thead>
+                <tr>
+                    <td></td>
+                    <th>IE</th>
+                    <th>FF</th>
+                    <th>Chrome</th>
+                    <th>Safari</th>
+                    <th>iOS<br>Safari</th>
+                    <th>Opera</th>
+                    <th>OperaMo</th>
+                    <th>Opera Mini</th>
+                    <th>Android</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Transitions</th>
+                    <td>10+</td>
+                    <td>9+</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                    <td>3.2+</td>
+                    <td>11.6+</td>
+                    <td>10+</td>
+                    <td class="no">No</td>
+                    <td>2.1+</td>
+                </tr>
+
+            </body>
+		</table>
+        <p>Transitions are supported by all major browsers except Opera Mini.</p>
+        <p class="note txtright"><a href="http://caniuse.com/#feat=css-transitions" target="_blank">Source</a></p>
+        </ul>
+
+		</section>
+
+	</div></div>
+
+
+    <div class="slide shout" id="WhyCSSNotJavaScript"><div>
+		<section>
+			<header>
+				<h2>Why use CSS instead of JavaScript?</h2>
+			</header>
+		</section>
+	</div></div>
+
+	<div class="slide" id="HowBrowsersWork"><div>
+		<section>
+			<header>
+				<h2>How browsers work</h2>
+			</header>
+            <div>
+                <img src="http://localhost/minnewebcon/images/browsers.svg" alt="Browsers have a rendering engine and a JavaScript engine." type="svg+xml" style="margin:auto;display:block;" width="535" height="320">
+            </div>
+		</section>
+	</div></div>
+
+	<div class="slide" id="WhyUseCSS"><div>
+		<section>
+			<header>
+				<h2>Why use CSS?</h2>
+			</header>
+			<ul>
+                <li>JavaScript engine isn't running calculations</li>
+                <li>JavaScript engine doesn't have to communicate with the layout engine</li>
+                <li>Can be hardware accelerated if the browser and hardware support it</li>
+			</ul>
+		</section>
+	</div></div>
+
+
+    <div class="slide" id="TransitionSyntax"><div>
+		<section>
+			<header>
+				<h2>Transition Syntax</h2>
+			</header>
+		    <pre><code>selector{
+    transition-property: width, left;
+    transition-duration: 2s, 1s;
+    transition-delay: 0, 500ms;
+    transition-timing-function: ease, linear;
+}</code></pre>
+		</section>
+	</div></div>
+
+
+    <div class="slide" id="TransitionShortSyntax"><div>
+		<section>
+			<header>
+				<h2>Shorthand Transition Syntax</h2>
+			</header>
+		    <pre><code>selector{
+    transition: width 2s 0 ease, left 1s 500ms linear;
+}</code></pre>
+       </section>
+	</div></div>
+
+
+	<div class="slide" id="TransitionProperty"><div>
+		<section>
+			<header>
+				<h2><code>transition-property</code></h2>
+			</header>
+			<p>Which property or properties to animate.</p>
+            <ul>
+                <li><code>transition-property: left;</code></li>
+                <li><code>transition-property: font-size, color;</code></li>
+                <li><code>transition-property: all;</code></li>
+                <li><code>transition-property: none;</code></li>
+            </ul>
+		</section>
+	</div></div>
+
+	<div class="slide" id="TransitionDuration"><div>
+		<section>
+			<header>
+				<h2><code>transition-duration</code></h2>
+			</header>
+		    <ul>
+                <li><code>transition-duration: 500ms</code></li>
+                <li><code>transition-duration: 2s, 3s</code></li>
+                <li><code>transition-duration: 0s</code></li>
+            </ul>
+            <p class="note">Time units are defined in the <a href="http://www.w3.org/TR/2012/WD-css3-values-20120308/">CSS Values and Units Module Level 3</a> spec.</p>
+		</section>
+	</div></div>
+
+
+	<div class="slide" id="TransitionDelay"><div>
+		<section>
+			<header>
+				<h2><code>transition-delay</code></h2>
+			</header>
+			<p>Delays the start of the transition.</p>
+            <ul>
+                <li><code>transition-delay: 0s</code></li>
+                <li><code>transition-delay: 500ms</code></li>
+                <li><code>transition-delay: 2s, 1s</code></li>
+                <li><code>transition-delay: -2s</code></li>
+            </ul>
+            <p class="txtright"><a href="demos/transitions/negativedelay/" target="_blank">Demo</a></p>
+		</section>
+	</div></div>
+
+
+	<div class="slide" id="TransitionTimingFunction"><div>
+		<section>
+			<header>
+				<h2><code>transition-timing-function</code></h2>
+			</header>
+            <code>ease</code> <code>linear</code> <code>ease-in</code> <code>ease-out</code>
+            <code>ease-in-out</code> <code style="white-space:nowrap;">cubic-bezier(0, .25, .75, 1)</code>
+            <code>step-start</code> <code>step-end</code> <code>steps(1, start)</code>
+             <p class="txtright"><a href="demos/transitions/timingfunctions/" target="_blank">Demo</a></p>
+        </section>
+	</div></div>
+
+
+	<div class="slide" id="Transition"><div>
+		<section>
+			<header>
+				<h2><code>transition</code></h2>
+			</header>
+			<p>Shorthand property.
+            <ul>
+                <li><code>transition: left 2s ease</code></li>
+                <li><code>transition: font-size 2s ease, color 1s linear</code></li>
+            </ul>
+	</section>
+	</div></div>
+
+
+	<div class="slide shout" id="WhichProps"><div>
+		<section>
+			<header>
+				<h2>Which properties can you transition?</h2>
+			</header>
+		</section>
+	</div></div>
+
+    <div class="slide" id="WhichProps2"><div>
+		<section>
+			<header>
+				<h2>Properties with interpolate-able values</h2>
+			</header>
+			<p>Rough guide: if it can accept numeric values, it's probably transitionable!</p>
+			<ul>
+                <li>lengths</li>
+                <li>percentages</li>
+	            <li>colors</li>
+	        </ul>
+            <p class="note">See the <a href="http://www.w3.org/TR/css3-transitions/#animatable-properties-" target="_blank">specification</a> for an exact list</a>.</p>
+		</section>
+	</div></div>
+
+  <div class="slide shout" id="TransitionEvents"><div>
+		<section>
+			<header>
+				<h2>Transition Events</h2>
+			</header>
+		</section>
+	</div></div>
+
+    <div class="slide" id="TransitionEnd"><div>
+		<section>
+			<header>
+				<h2>Only one so far: <code>transitionend</code></h2>
+			</header>
+			<pre><code><i>el</i>.addEventListener('transitionend', <i>func</i>, false);</code></pre>
+
+		</section>
+	</div></div>
+
+    <div class="slide" id="WhichTransitionEnd"><div>
+		<section>
+			<header>
+				<h2>Is the event prefixed too?</h2>
+			</header>
+			<p>Yes (except in Firefox).</p>
+
+			<ul>
+			    <li>Firefox: <code>transitionend</code></li>
+			    <li>Webkit: <code>webkitTransitionEnd</code></li>
+			    <li>Opera: <code>oTransitionEnd</code></li>
+			    <li>Microsoft: <code>MSTransitionEnd</code></li>
+			</ul>
+		</section>
+	</div></div>
+
+    <div class="slide" id="WhichToListenFor"><div>
+		<section>
+			<header>
+				<h2>How Do I Determine Which Event To Listen For? </h2>
+			</header>
+			<p>Use <a href="http://modernizr.com/docs/" target="_blank">Modernizr</a></p>
+			<pre style="line-height:1.5;"><code>var endNames = {
+    'WebkitTransition' : 'webkitTransitionEnd',
+    'MozTransition'    : 'transitionend',
+    'OTransition'      : 'oTransitionEnd',
+    'msTransition'     : 'MSTransitionEnd'
+}
+transEnd = endNames[ Modernizr.prefixed('transition') ];
+</code></pre>
+
+		</section>
+	</div></div>
+
+
+
+
+    <div class="slide shout" id="Transforms"><div>
+		<section>
+			<header>
+				<h2>Transforms</h2>
+			</header>
+		</section>
+	</div></div>
+
+    <div class="slide demo" id="TransformsBrowserSupportTable"><div>
+		<section>
+			<header>
+				<h2>Browser Support</h2>
+			</header>
+
+			<table style="border:1px solid #ccc;">
+            <thead>
+                <tr>
+                    <td></td>
+                    <th>IE</th>
+                    <th>FF</th>
+                    <th>Chrome</th>
+                    <th>Safari</th>
+                    <th>iOS<br>Safari</th>
+                    <th>Opera</th>
+                    <th>OperaMo</th>
+                    <th>Opera Mini</th>
+                    <th>Android</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>2D Transforms</th>
+                    <td>9+</td>
+                    <td>3.6+</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                    <td>3.2+</td>
+                    <td>11+</td>
+                    <td>11+</td>
+                    <td class="no">No</td>
+                    <td>2.1+</td>
+                </tr>
+
+                <tr>
+                    <th>3D Transforms</th>
+                    <td>10+</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                    <td>3.2+</td>
+                    <td class="no">No</td>
+                    <td class="no">No</td>
+                    <td class="no">No</td>
+                    <td>3.0+</td>
+                </tr>
+            </body>
+		</table>
+        <ul>
+            <li>2D Transforms supported by all major browsers except Opera Mini.</li>
+            <li>3D Transforms supported by all major browsers except Opera.</li>
+        </ul>
+
+		</section>
+
+	</div></div>
+
+
+    <div class="slide demo" id="CoordinateSystem"><div>
+		<section>
+			<header>
+				<h2>Transforms create a local coordinate system</h2>
+			</header>
+			<p>
+			    <code style="font-size:1.3rem;">transform:none</code> versus
+			    <code style="font-size:1.3rem;">transform: translate(100px,100px);</code></p>
+            <div class="center transex2" style='float:left'>
+                <div>&nbsp;</div>
+            </div>
+
+            <div id="translateexample" class="center transex2">
+                <div>&nbsp;</div>
+            </div>
+        </section>
+	</div></div>
+
+	<div class="slide" id="StackingContext"><div>
+		<section>
+			<header class="nomargin">
+				<h2>Transforms create a new <a href="http://www.w3.org/TR/CSS21/visuren.html#layers">stacking context</a></h2>
+			</header>
+
+			<div id="stackingcontextdemo">
+            <div id="lipsumscale"></div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis accumsan faucibus tortor id porta. Sed imperdiet, tortor vitae viverra vestibulum, diam lorem fermentum mauris, quis bibendum erat dolor non ante. Quisque quis augue ut purus feugiat semper sit amet sit amet mauris. Integer commodo ligula id velit blandit eget dictum sem fringilla. Nullam dolor dui, laoreet eget hendrerit a, fermentum id libero.</p>
+
+            <p>Morbi posuere condimentum leo, ut venenatis enim semper aliquet. Nunc rutrum varius iaculis. Quisque adipiscing mollis est. Nunc est nisl, fermentum non scelerisque id, vulputate id urna. Mauris eget quam vel eros molestie iaculis. Sed vulputate blandit dui ut mollis. Curabitur consectetur placerat odio in porta. Proin tempor, libero in ultrices venenatis, lacus turpis euismod leo, a placerat nisi nisl vitae odio.</p>
+
+            <p>Etiam eget neque diam. Donec eget ligula vel turpis aliquet dignissim sit amet sed magna. Aenean a metus congue nunc tempus elementum sit amet sit amet mi. In hac habitasse platea dictumst. Cras molestie tempor erat, ultricies placerat neque fringilla in. Fusce tincidunt elementum massa a hendrerit.</p>
+
+            <p>Nullam mollis nisl et est molestie quis lacinia leo imperdiet. Vestibulum faucibus varius velit, in pretium sem consequat et. Mauris pharetra dui quis tortor ultricies et convallis purus tincidunt. Curabitur ullamcorper vehicula ultrices. Vestibulum elit leo, fermentum rutrum convallis quis, gravida imperdiet risus.</p>
+
+            <p class="txtright">
+                <button id="stackingbtn" type="button">Toggle transform</button>
+            </p>
+            </div>
+
+        </section>
+	</div></div>
+
+    <div class="slide" id="ContainingBlock"><div>
+		<section>
+			<header class="nomargin">
+				<h2>Transforms create a containing block</h2>
+			</header>
+			<p class="hidden" id="containingblocktext">Fixed / absolute positioned children are offset from the parent, not the root element.</p>
+			<div id="containingblockdemo" class="center transform">
+                <div id="unskew"></div>
+			</div>
+			<p class="txtright"><button id="containbtn" type="button">Toggle transform</button></p>
+        </section>
+	</div></div>
+
+
+	<div class="slide" id="TheAxes"><div>
+		<section>
+			<header>
+				<h2>2D vs. 3D Transforms: x, y &amp; z axes</h2>
+			</header>
+			<p class="nomargin">
+			    <img src="images/cartesian_coordinate_surfaces.png" alt="cartesian coordinate surfaces" class="center">
+            </p>
+            <p class="note txtright" style="margin-top:-2em;"><a href="http://en.wikipedia.org/wiki/File:Cartesian_coordinate_surfaces.png">image source</a></p>
+		</section>
+	</div></div>
+
+
+	<div class="slide" id="ExpressedAsAMatrix"><div>
+		<section>
+			<header>
+				<h2>Expressed as a matrix</h2>
+			</header>
+            <ul>
+                <li><code>matrix(a,b,c,d,e,f)</code></li>
+                <li><code>matrix3d(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p)</code></li>
+            </ul>
+            <p>Matrix functions are &#8216;formulas&#8217; for other functions.</p>
+            <p></p>
+		</section>
+	</div></div>
+
+	<div class="slide" id="ExpressedAsAMatrixExample"><div>
+		<section>
+			<header>
+				<h2>Expressed as a matrix: an example</h2>
+			</header>
+            <p><code>transform: rotate3d(10px,20px,40px,-50deg);</code></p>
+            <p style="text-align:center;font-size:3rem">vs</p>
+            <p><code>transform: matrix3d(0.659, -0.634, 0.402, 0, 0.702, 0.710, -0.031, 0, -0.266, 0.303, 0.914, 0, 0, 0, 0, 1)</code></p>
+		</section>
+	</div></div>
+
+	<div class="slide" id="TwoDTransformFunctions"><div>
+		<section>
+			<header>
+				<h2>2D <code>transform</code> functions</h2>
+			</header>
+            <ul class="twocol nobullet">
+                <li><code>matrix(a,b,c,d,e,f)</code></li>
+                <li><code>rotate(a)</code></li>
+                <li><code>translate(tx[,ty])</code></li>
+                <li><code>translateX(tx)</code></li>
+                <li><code>translateY(ty)</code></li>
+                <li><code>scale(sx[,sy])</code></li>
+                <li><code>scaleX(sx)</code></li>
+                <li><code>scaleY(sy)</code></li>
+                <li><code>skew(a)</code></li>
+                <li><code>skewX(a)</code></li>
+                <li><code>skewY(a)</code></li>
+            </ul>
+		</section>
+	</div></div>
+
+	<div class="slide" id="TwoDTransformExamples"><div>
+		<section>
+			<header>
+				<h2>2D Transforms in action</h2>
+			</header>
+            <div class="stdemowrap">
+                <div class="stdemo"></div>
+                <p>
+                    <button type="button" id="rotate">rotate</button>
+                    <button type="button" id="skew">skew</button>
+                    <button type="button" id="scale">scale</button>
+                    <button type="button" id="translate">translate</button>
+                    <button type="button">clear</button>
+                </p>
+            </div>
+		</section>
+	</div></div>
+
+	<div class="slide" id="ThreeDTransformFunctions"><div>
+		<section>
+			<header>
+				<h2>3D <code>transform</code> functions</h2>
+			</header>
+            <ul class="nobullet nomargin">
+                <li><code>matrix3d(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p)</code></li>
+            </ul>
+            <ul class="twocol nobullet nomargin" style="margin-top:-2.7rem;">
+                <li><code>translate3d(tx, ty, tz)</code></li>
+                <li><code>translateZ(tz)</code></li>
+                <li><code>scale3d(n,n,n)</code></li>
+                <li><code>scaleZ(n)</code></li>
+                <li><code>rotate3d(n, n, n, a)</code></li>
+                <li><code>rotateX(a)</code></li>
+                <li><code>rotateY(a)</code></li>
+                <li><code>rotateZ(a)</code></li>
+                <li><code>perspective(len)</code></li>
+            </ul>
+		</section>
+	</div></div>
+
+
+	<div class="slide" id="ThreeDTransformExamples"><div>
+		<section>
+			<header>
+				<h2>3D Transforms in action</h2>
+			</header>
+            <div class="stdemowrap">
+                <div class="stdemo"></div>
+                <p>
+                    <button type="button" id="rotate3d">rotate3d</button>
+                    <button type="button" id="scale3d">scale3d</button>
+                    <button type="button" id="translate3d">translate3d</button>
+                    <button type="button" id="perspective">perspective</button>
+                    <button type="button">clear</button>
+                </p>
+            </div>
+		</section>
+	</div></div>
+
+	<div class="slide shout" id="ShowADemo"><div>
+		<section>
+			<header>
+				<h2><a href="demos/cube.html" target="_blank">Demo</a></h2>
+			</header>
+  		</section>
+	</div></div>
+
+	<div class="slide shout" id="TweakingYourTransform"><div>
+		<section>
+			<header>
+				<h2>Tweaking your transforms</h2>
+			</header>
+  		</section>
+	</div></div>
+
+	<div class="slide" id="TransformOrigin"><div>
+		<section>
+			<header>
+				<h2><code>transform-origin: x y</code></h2>
+			</header>
+            <div class="transordemo">
+                <figure class="transordemof to0"><p>0 0</p></figure>
+                <figure class="transordemof to50"><p>50% 50%</p></figure>
+                <figure class="transordemof to100"><p>100% 100%</p></figure>
+                <figure class="transordemof to200"><p>200% 200%</p></figure>
+            </div>
+            <p class="txtright"><button type="button" id="transformtrigger">Rotate</button></p>
+  		</section>
+	</div></div>
+
+	<div class="slide" id="PerspectiveOrigin"><div>
+		<section>
+			<header>
+				<h2><code>perspective-origin: x y</code></h2>
+			</header>
+            <div id="podemowrap">
+                <div id="podemo" class="rotate">
+                </div>
+
+                <form id="poform">
+                    x: <label for="po_X" id="po_l_Y">0</label>px
+                    <input type="range" id="po_X" name="po_X" value="0" min="-1000" max="1000">
+                    y: <label for="po_Y" id="po_l_X">0</label>px
+                    <input type="range" id="po_Y" name="po_Y" value="0" min="-1000" max="1000">
+                    <button type="reset">Reset</button>
+                </form>
+            </div>
+            </section>
+    </div></div>
+
+	<div class="slide shout" id="CombiningTransitionsTransforms"><div>
+		<section>
+			<header>
+				<h2>Combining transitions &amp; transforms</h2>
+			</header>
+  		</section>
+	</div></div>
+
+
+	<div class="slide" id="CompoundTransforms"><div>
+		<section>
+			<header>
+				<h2>Compound transforms</h2>
+			</header>
+			<p>Transforms can be combined. Applied in the order listed.</p>
+            <pre><code>p{
+     transition: transform 500ms linear;
+     <mark>transform: skew(40deg) rotate(-45deg) scale(.3);</mark>
+}</code></pre>
+		</section>
+	</div></div>
+
+	<div class="slide" id="ChangeOneTransform"><div>
+		<section>
+			<header>
+				<h2>But the cascade still applies</h2>
+			</header>
+            <p><code class="nobg">p.transformed{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<del>transform: skew(40deg) rotate(-45deg) scale(.3);</del>
+&nbsp;&nbsp;&nbsp;&nbsp;transform: skew(-50deg);<br>}</code></p>
+		</section>
+	</div></div>
+
+	<div class="slide" id="ApplyNewTransform"><div>
+		<section>
+			<header>
+				<h2>Apply a new transform with all functions</h2>
+			</header>
+            <pre><code class="nobg">p.transformed{
+     transform: skew(-50deg) rotate(-45deg) scale(.3);
+}</code></pre>
+		</section>
+	</div></div>
+
+
+	<div class="slide shout" id="WhatAboutThePrefixes"><div>
+		<section>
+			<header>
+				<h2>What about the prefixes?</h2>
+			</header>
+		</section>
+	</div></div>
+
+	<div class="slide" id="AboutThePrefixes"><div>
+		<section>
+			<header>
+				<h2>What about the prefixes?</h2>
+			</header>
+			<p>Yes, you need to include the prefix when transitioning prefixed properties.</p>
+			<pre><code>-webkit-transition: -webkit-transform 500ms linear;
+   -moz-transition:    -moz-transform 500ms linear;
+    -ms-transition:     -ms-transform 500ms linear;
+     -o-transition:      -o-transform 500ms linear;</code></pre>
+		</section>
+	</div></div>
+
+	<div class="slide shout" id="Questions"><div>
+		<section>
+			<header>
+				<h2>Questions?</h2>
+			</header>
+		</section>
+	</div></div>
+
+	<div class="slide" id="Resources"><div>
+		<section>
+			<header>
+				<h2>Resources</h2>
+			</header>
+<ul>
+	<li><a href="http://dev.w3.org/csswg/css3-transforms/">CSS Transforms, Editors Draft</a></li>
+	<li><a href="http://www.westciv.com/tools/transforms/">Westciv Transforms Tool</a></li>
+	<li><a href="http://modernizr.com/">Modernizr</a></li>
+    <li><a href="http://desandro.github.com/3dtransforms/">Intro to CSS 3D transforms</li>
+</ul>
+		</section>
+	</div></div>
+
+
+	<!--
+		To hide progress bar from entire presentation
+		just remove “progress” element.
+		-->
+	<!-- <div class="progress"><div></div></div> -->
+	<script src="scripts/script.js"></script>
+	<script src="demos/modernizr.js"></script>
+	<script src="demos/js.js"></script>
+
+	<script>
+    (function(){
+
+       var cbdt  = document.getElementById('containbtn'),
+           scbt  = document.getElementById('stackingbtn'),
+            tbt  = document.getElementById('translatebtn'),
+           pdbt  = document.getElementById('perspectivedemobtn'),
+          pddbt  = document.getElementById('perspectiveorigindemobtn'),
+        stdemos  = document.querySelectorAll('.stdemowrap button'),
+        transformorigin = document.getElementById('transformtrigger'),
+        pox = document.getElementById('po_X'),
+        poy = document.getElementById('po_Y'),
+        runtrans;
+
+
+       cbdt.addEventListener('click', function(){
+           Lib.toggleClass(document.getElementById('containingblockdemo'),'transform');
+           Lib.removeclass(document.getElementById('containingblocktext'),'hidden');
+       }, false);
+
+       scbt.addEventListener('click', function(){
+            Lib.toggleClass( document.getElementById('lipsumscale') ,'transform');
+       }, false);
+
+       runtrans = function(e){
+           var  s = stdemos,
+                transobj = e.target.parentNode.previousElementSibling,
+                howmanytoremove = Lib.numclasses(transobj),
+                classes = Lib.getclasses(transobj);
+
+           if( howmanytoremove > 1 ){
+                for(var x = 1; x < howmanytoremove; x++){
+                    if( classes[x] != 'stdemo' ){
+                        Lib.removeclass(transobj, classes[x]);
+                    }
+                }
+           }
+
+           if(e.target.id != ''){
+                Lib.addclass(transobj, e.target.id);
+           }
+       }
+
+       for(var o=0; o < stdemos.length; o++){
+            stdemos[o].addEventListener('click', runtrans, false);
+       }
+
+       transformorigin.addEventListener('click', function(e){
+            var demos = document.getElementsByClassName('transordemof'),
+                len = demos.length;
+
+            for(var x=0; x < len; x++){
+                Lib.toggleClass(demos[x],'rotate');
+            }
+
+       }, false);
+
+
+    pox.addEventListener('change', function(e){
+        var y = document.getElementById('po_Y'),
+            po = document.getElementById('podemowrap'),
+            lbl = document.getElementById('po_l_Y'),
+            val;
+
+            val = e.target.value+'px '+y.value+'px';
+            po.style[Modernizr.prefixed('perspectiveOrigin')] = val;
+
+            var lt = document.createTextNode(e.target.value);
+            lbl.replaceChild(lt,lbl.childNodes[0]);
+
+
+    }, false);
+
+    poy.addEventListener('change', function(e){
+
+        var x  = document.getElementById('po_X'),
+            po = document.getElementById('podemowrap'),
+            lbl = document.getElementById('po_l_X'),
+            val;
+
+            val = x.value+'px '+e.target.value+'px';
+            po.style[Modernizr.prefixed('perspectiveOrigin')] = val;
+
+            var lt = document.createTextNode(e.target.value);
+            lbl.replaceChild(lt,lbl.childNodes[0]);
+
+
+        }, false);
+
+    document.getElementById('poform').addEventListener('reset', function(e){
+         po = document.getElementById('podemowrap');
+
+         po.style[Modernizr.prefixed('perspectiveOrigin')] = '50% 50%';
+
+         document.getElementById('po_l_Y').innerHTML = '0';
+         document.getElementById('po_l_X').innerHTML = '0';
+
+    }, false);
+
+    })();
+
+	</script>
+	<!-- Shower presentation software, Copyright © 2010–2012 Vadim Makeev — pepelsbey.net -->
+
+</body>
+</html>

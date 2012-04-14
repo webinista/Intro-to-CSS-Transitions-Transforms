@@ -1,0 +1,43 @@
+h1,#controls,#wrap,body>p{
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+#transformed{
+    background:#909;
+    width:200px;
+    height:200px;
+    border-left: 2rem solid #f60;
+}
+
+#controls{
+    background:#eee;
+    clear:both;
+    margin:1rem 0;
+    min-width: 1020px !important;
+    white-space: nowrap;
+    margin:0 auto 20px;
+    padding:.5rem 0;
+}
+#controls p{
+    float:left;
+    width:24%;
+    padding-left: .5rem;
+    margin:0
+}
+#wrap{
+    clear:both;
+    border: 5px dotted rgb(102,204,0);
+    background: rgba(204,255,0,.5);
+}
+br{
+    clear:both;
+}
+label{
+    display:block;
+    font-family: monospace;
+    font-size: 1.2rem;
+}
+button{margin-top:5px;}
+input[size]{text-align:right;}
+input[type=number]{font:inherit;}
