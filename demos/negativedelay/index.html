@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,user-scalable=yes">
+	<title>Negative Delay</title>
+    <link rel="stylesheet" href="../s.css" media="screen">
+	<style media="screen">
+	    div{
+	           width: 11rem;
+              height: 10.5rem;
+                left: 1rem;
+          background: #f60;
+            position: relative;
+
+           -moz-transition-property: width;
+            -ms-transition-property: width;
+             -o-transition-property: width;
+        -webkit-transition-property: width;
+
+           -moz-transition-duration: 4s;
+            -ms-transition-duration: 4s;
+             -o-transition-duration: 4s;
+        -webkit-transition-duration: 4s;
+
+           -moz-transition-timing-function: ease;
+            -ms-transition-timing-function: ease;
+             -o-transition-timing-function: ease;
+        -webkit-transition-timing-function: ease;
+	    }
+
+        div#demodiva{
+           -moz-transition-delay: -2s;
+            -ms-transition-delay: -2s;
+             -o-transition-delay: -2s;
+        -webkit-transition-delay: -2s;
+        }
+
+        div#demodivc{
+           -moz-transition-delay: 2s;
+            -ms-transition-delay: 2s;
+             -o-transition-delay: 2s;
+        -webkit-transition-delay: 2s;
+        }
+
+        div.transition{
+            width: 63rem;
+        }
+
+        div p{
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 1rem;
+            padding-top:1rem;
+            color:#fff
+        }
+        button{ margin-left: 1rem;}
+        </style>
+</head>
+<body>
+
+<p><button id="runall">Run all</button></p>
+
+<div id="demodivb"><p>0s delay</p>
+<button>Run it</button>
+</div>
+
+
+<div id="demodiva"><p>-2s delay</p>
+<button>Run it</button>
+</div>
+
+
+<div id="demodivc"><p>2s delay</p>
+<button>Run it</button>
+</div>
+
+
+<script>
+/* var btns = document.getElementsByTagName('button');
+
+var action = function(e){
+    console.log( e.target.nodeName );
+    e.target.parentNode.classList.toggle('transition');
+}
+
+for(var x = 0; x < btns.length; x++){
+    btns[x].addEventListener('click', action, false);
+} */
+
+document.body.addEventListener('click', function(e){
+    if( (e.target.nodeName == 'BUTTON') && ( e.target.id != 'runall') ) {
+        e.target.parentNode.classList.toggle('transition');
+    } else {
+        var divs = document.getElementsByTagName('div'), len = divs.length;
+
+        for(var i = 0; i < len; i++){
+            divs[i].classList.toggle('transition');
+        }
+    }
+},true);
+
+</script>
+</body>
+</html>

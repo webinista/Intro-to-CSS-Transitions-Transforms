@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,user-scalable=yes">
+	<title>Easing Functions</title>
+    <link rel="stylesheet" href="../../s.css" media="screen">
+	<style media="screen">
+	    div{
+	           width: 8rem;
+              height: 8rem;
+                left: 0;
+          background: #909;
+            position: relative;
+
+           -moz-transition-property: left;
+            -ms-transition-property: left;
+             -o-transition-property: left;
+        -webkit-transition-property: left;
+
+           -moz-transition-duration: 1s;
+            -ms-transition-duration: 1s;
+             -o-transition-duration: 1s;
+        -webkit-transition-duration: 1s;
+
+	    }
+
+        .transition{
+
+            left: 600px;
+        }
+
+        #ease.transition{
+           -moz-transition-timing-function: ease;
+            -ms-transition-timing-function: ease;
+             -o-transition-timing-function: ease;
+        -webkit-transition-timing-function: ease;
+        }
+
+        #linear.transition{
+           -moz-transition-timing-function: linear;
+            -ms-transition-timing-function: linear;
+             -o-transition-timing-function: linear;
+        -webkit-transition-timing-function: linear;
+        }
+
+        #ease-in.transition{
+           -moz-transition-timing-function: ease-in;
+            -ms-transition-timing-function: ease-in;
+             -o-transition-timing-function: ease-in;
+        -webkit-transition-timing-function: ease-in;
+        }
+
+        #ease-out.transition{
+           -moz-transition-timing-function: ease-out;
+            -ms-transition-timing-function: ease-out;
+             -o-transition-timing-function: ease-out;
+        -webkit-transition-timing-function: ease-out;
+        }
+
+        #ease-in-out.transition{
+           -moz-transition-timing-function: ease-in-out;
+            -ms-transition-timing-function: ease-in-out;
+             -o-transition-timing-function: ease-in-out;
+        -webkit-transition-timing-function: ease-in-out;
+        }
+
+
+        #steps1start.transition{
+           -moz-transition-timing-function: steps(4, start);
+            -ms-transition-timing-function: steps(4, start);
+             -o-transition-timing-function: steps(4, start);
+        -webkit-transition-timing-function: steps(4, start);
+        }
+
+        #steps1end.transition{
+           -moz-transition-timing-function: steps(4, end);
+            -ms-transition-timing-function: steps(4, end);
+             -o-transition-timing-function: steps(4, end);
+        -webkit-transition-timing-function: steps(4, end);
+        }
+
+
+
+        div p{
+            padding-top:3rem;
+            text-align:center;
+        }
+</style>
+</head>
+<body>
+
+<article>
+    <h1>Easing functions <button id="all">Run all</button></h1>
+    <p></p>
+
+    <div id="ease">
+        <p><button>ease</button></p>
+    </div>
+
+     <div id="linear">
+        <p><button>linear</button></p>
+    </div>
+
+     <div id="ease-in">
+        <p><button>ease-in</button></p>
+    </div>
+
+     <div id="ease-out">
+        <p><button>ease-out</button></p>
+    </div>
+
+     <div id="ease-in-out">
+        <p><button>ease-in-out</button></p>
+    </div>
+
+    <div id="steps1start">
+        <p><button>steps(4, start)</button></p>
+    </div>
+
+    <div id="steps1end">
+        <p><button>steps(4, end)</button></p>
+    </div>
+</article>
+
+
+    <script>
+     var btns = document.getElementsByTagName('button');
+
+    var action = function(e){
+       if(e.target.id != 'all'){
+            e.target.parentNode.parentNode.classList.toggle('transition');
+            console.log( e.target.parentNode.parentNode.id);
+       } else {
+            for(var x = 1; x < btns.length; x++){
+                 btns[x].parentNode.parentNode.classList.toggle('transition');
+            }
+       }
+    }
+
+    for(var x = 0; x < btns.length; x++){
+        btns[x].addEventListener('click', action, false);
+    }
+    </script>
+</body>
+</html>

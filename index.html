@@ -261,11 +261,11 @@
         }
 
         .stdemo.scale3d{
-            -webkit-transform: scale3d(1.1,.6,.5);
-                 -o-transform: scale3d(1.1,.6,.5);
-               -moz-transform: scale3d(1.1,.6,.5);
-                -ms-transform: scale3d(1.1,.6,.5);
-                    transform: scale3d(1.1,.6,.5);
+            -webkit-transform: scale3d(1.1,.6,1);
+                 -o-transform: scale3d(1.1,.6,1);
+               -moz-transform: scale3d(1.1,.6,1);
+                -ms-transform: scale3d(1.1,.6,1);
+                    transform: scale3d(1.1,.6,1);
         }
         .stdemo.rotate3d{
             -webkit-transform: rotate3d(100,150,90,45deg);
@@ -373,6 +373,7 @@
         }
         #podemo{border-left:5px solid #c09;}
         .clear{clear:both;}
+        .small{font-size:1.2rem;}
 	</style>
 </head>
 <body class="list">
@@ -517,7 +518,7 @@
 			<ul>
                 <li>JavaScript engine isn't running calculations</li>
                 <li>JavaScript engine doesn't have to communicate with the layout engine</li>
-                <li>Can be hardware accelerated if the browser and hardware support it</li>
+                <li>By shifting to rendering engine, transitions can be hardware accelerated</li>
 			</ul>
 		</section>
 	</div></div>
@@ -592,7 +593,7 @@
                 <li><code>transition-delay: 2s, 1s</code></li>
                 <li><code>transition-delay: -2s</code></li>
             </ul>
-            <p class="txtright"><a href="demos/transitions/negativedelay/" target="_blank">Demo</a></p>
+            <p class="txtright"><a href="demos/negativedelay/" target="_blank">Demo</a></p>
 		</section>
 	</div></div>
 
@@ -617,7 +618,7 @@
 			</header>
 			<p>Shorthand property.
             <ul>
-                <li><code>transition: left 2s ease</code></li>
+                <li><code>transition: left 2s ease -1s</code></li>
                 <li><code>transition: font-size 2s ease, color 1s linear</code></li>
             </ul>
 	</section>
@@ -676,7 +677,7 @@
 			    <li>Firefox: <code>transitionend</code></li>
 			    <li>Webkit: <code>webkitTransitionEnd</code></li>
 			    <li>Opera: <code>oTransitionEnd</code></li>
-			    <li>Microsoft: <code>MSTransitionEnd</code></li>
+			    <li>Internet Explorer: <code>MSTransitionEnd</code></li>
 			</ul>
 		</section>
 	</div></div>
@@ -693,7 +694,7 @@
     'OTransition'      : 'oTransitionEnd',
     'msTransition'     : 'MSTransitionEnd'
 }
-transEnd = endNames[ Modernizr.prefixed('transition') ];
+var transEnd = endNames[ Modernizr.prefixed('transition') ];
 </code></pre>
 
 		</section>
@@ -943,6 +944,30 @@ transEnd = endNames[ Modernizr.prefixed('transition') ];
 		</section>
 	</div></div>
 
+	<div class="slide shout" id="OtherProperties"><div>
+		<section>
+			<header>
+				<h2>Other Transform Properties</h2>
+			</header>
+  		</section>
+	</div></div>
+
+	<div class="slide" id="OtherTransformProperties"><div>
+		<section>
+			<header>
+				<h2>Other Transform Properties</h2>
+			</header>
+            <ul>
+                <li><code>backface-visibility</code></li>
+                <li><code>perspective</code><br>
+                <span class="small">(not to be confused with the <code class="nobg">perspective()</code> function)</span></li>
+                <li><code>transform-origin</code></li>
+                <li><code>perspective-origin</code></li>
+            </ul>
+		</section>
+	</div></div>
+
+
 	<div class="slide shout" id="ShowADemo"><div>
 		<section>
 			<header>
@@ -1022,8 +1047,8 @@ transEnd = endNames[ Modernizr.prefixed('transition') ];
 				<h2>But the cascade still applies</h2>
 			</header>
             <p><code class="nobg">p.transformed{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<del>transform: skew(40deg) rotate(-45deg) scale(.3);</del>
-&nbsp;&nbsp;&nbsp;&nbsp;transform: skew(-50deg);<br>}</code></p>
+&nbsp;&nbsp;<del>transform: skewX(40deg) rotate(-45deg) scale(.3);</del>
+<br>&nbsp;&nbsp;transform: skewX(-50deg);<br>}</code></p>
 		</section>
 	</div></div>
 

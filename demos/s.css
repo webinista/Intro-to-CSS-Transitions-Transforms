@@ -1,0 +1,72 @@
+body{
+    font: normal 95% / 1.5 helvetica,arial,sans-serif;
+    padding:0;
+    margin:0;
+    /*
+	forces a scroll bar so we don't get the jumpy
+	action when the bar appears and disappears
+	*/
+    overflow-y:scroll;
+}
+
+button{
+    font: inherit;
+    font-weight:bold;
+    background:#36f;
+    border:2px outset #30f;
+    color: #fff;
+}
+
+button:disabled{
+    background:#eee;
+    border-color:#eee;
+    color:#666;
+}
+
+a:link{
+    color:#36f;
+}
+
+a:visited{
+    color:#003;
+}
+
+a:hover, a:active{
+    color:#c09;
+}
+
+.noshow{
+    display:none;
+}
+
+.warning{
+    background:#ffc;
+    margin:0;
+}
+
+.warning p{
+    margin:0;
+    padding:5px;
+    text-align: center;
+}
+
+.note{
+    color:#666;
+}
+.txtright{
+    text-align:right;
+}
+
+footer{
+    position:absolute;
+    top:100%;
+    margin:1rem;
+    color:#666;
+}
+
+article{
+    margin:auto;
+    width: 80%;
+    padding: 0 0 3rem;
+}
+
