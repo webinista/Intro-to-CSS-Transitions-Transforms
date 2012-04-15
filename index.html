@@ -410,7 +410,8 @@
     <div class="slide shout extrashout" id="NeedPrefixes"><div>
 		<section>
 			<header>
-				<h2>All properties<br>must be prefixed.</h2>
+				<h2>All properties<br>must be prefixed.<br>
+				<span style="font-size:.5em">-o-, -ms-, -moz-, -webkit-</span></h2>
 			</header>
 		</section>
 	</div></div>
@@ -506,7 +507,7 @@
             <div>
                 <img src="images/browsers.png" alt="Browsers have a rendering engine and a JavaScript engine." style="margin:auto;display:block;" width="559" height="331">
             </div>
-            <p class="note clear txtright">*Simplified. <a href="http://taligarsiel.com/Projects/howbrowserswork1.htm">A fuller explanation</a>.</p>
+            <p class="note clear txtright">*Simplified. <a href="http://taligarsiel.com/Projects/howbrowserswork1.htm" target="_blank">A fuller explanation</a>.</p>
 		</section>
 	</div></div>
 
@@ -576,7 +577,7 @@
                 <li><code>transition-duration: 2s, 3s</code></li>
                 <li><code>transition-duration: 0s</code></li>
             </ul>
-            <p class="note">Time units are defined in the <a href="http://www.w3.org/TR/2012/WD-css3-values-20120308/">CSS Values and Units Module Level 3</a> spec.</p>
+            <p class="note">Time units are defined in the <a href="http://www.w3.org/TR/2012/WD-css3-values-20120308/" target="_blank">CSS Values and Units Module Level 3</a> spec.</p>
 		</section>
 	</div></div>
 
@@ -606,7 +607,7 @@
             <code>ease</code> <code>linear</code> <code>ease-in</code> <code>ease-out</code>
             <code>ease-in-out</code> <code style="white-space:nowrap;">cubic-bezier(0, .25, .75, 1)</code>
             <code>step-start</code> <code>step-end</code> <code>steps(1, start)</code>
-             <p class="txtright"><a href="demos/transitions/timingfunctions/" target="_blank">Demo</a></p>
+             <p class="txtright"><a href="demos/timingfunctions/" target="_blank">Demo</a></p>
         </section>
 	</div></div>
 
@@ -638,7 +639,7 @@
 			<header>
 				<h2>Properties with interpolate-able values</h2>
 			</header>
-			<p>Rough guide: if it can accept numeric values, it's probably transitionable!</p>
+			<p>Rough guide: if it can accept numeric values, it&#8217;s can probably be transitioned!</p>
 			<ul>
                 <li>lengths</li>
                 <li>percentages</li>
@@ -647,6 +648,19 @@
             <p class="note">See the <a href="http://www.w3.org/TR/css3-transitions/#animatable-properties-" target="_blank">specification</a> for an exact list.</p>
 		</section>
 	</div></div>
+
+    <div class="slide" id="WhichProps3"><div>
+		<section>
+			<header>
+				<h2>Can&#8217;t transition:</h2>
+			</header>
+			<ul>
+                <li>to or from <code>auto</code> or <code>inherit</code> values.</li>
+	            <li>between different kinds of units <em><b>in some browsers</b></em>.</li>
+	        </ul>
+		</section>
+	</div></div>
+
 
   <div class="slide shout" id="TransitionEvents"><div>
 		<section>
@@ -791,7 +805,7 @@ var transEnd = endNames[ Modernizr.prefixed('transition') ];
 	<div class="slide" id="StackingContext"><div>
 		<section>
 			<header class="nomargin">
-				<h2>Transforms create a new <a href="http://www.w3.org/TR/CSS21/visuren.html#layers">stacking context</a></h2>
+				<h2>Transforms create a new <a href="http://www.w3.org/TR/CSS21/visuren.html#layers" target="_blank">stacking context</a></h2>
 			</header>
 
 			<div id="stackingcontextdemo">
@@ -834,7 +848,7 @@ var transEnd = endNames[ Modernizr.prefixed('transition') ];
 			<p class="nomargin">
 			    <img src="images/cartesian_coordinate_surfaces.png" alt="cartesian coordinate surfaces" class="center">
             </p>
-            <p class="note txtright" style="margin-top:-2em;"><a href="http://en.wikipedia.org/wiki/File:Cartesian_coordinate_surfaces.png">image source</a></p>
+            <p class="note txtright" style="margin-top:-2em;"><a href="http://en.wikipedia.org/wiki/File:Cartesian_coordinate_surfaces.png" target="_blank">image source</a></p>
 		</section>
 	</div></div>
 
@@ -1063,7 +1077,6 @@ var transEnd = endNames[ Modernizr.prefixed('transition') ];
 		</section>
 	</div></div>
 
-
 	<div class="slide shout" id="WhatAboutThePrefixes"><div>
 		<section>
 			<header>
@@ -1099,10 +1112,12 @@ var transEnd = endNames[ Modernizr.prefixed('transition') ];
 				<h2>Resources</h2>
 			</header>
 <ul>
-	<li><a href="http://dev.w3.org/csswg/css3-transforms/">CSS Transforms, Editors Draft</a></li>
-	<li><a href="http://www.westciv.com/tools/transforms/">Westciv Transforms Tool</a></li>
-	<li><a href="http://modernizr.com/">Modernizr</a></li>
-    <li><a href="http://desandro.github.com/3dtransforms/">Intro to CSS 3D transforms</a></li>
+	<li><a href="http://dev.w3.org/csswg/css3-transforms/" target="_blank">CSS Transforms, Editors Draft</a></li>
+	<li><a href="http://www.westciv.com/tools/transforms/" target="_blank">Westciv Transforms Tool</a></li>
+	<li><a href="http://modernizr.com/" target="_blank">Modernizr</a></li>
+    <li><a href="http://desandro.github.com/3dtransforms/" target="_blank">Intro to CSS 3D transforms</a></li>
+    <li><a href="http://cubic-bezier.com/" target="_blank">Cubic-Bezier.com</a></li>
+    <li><a href="http://matthewlein.com/ceaser/" target="_blank">Ceaser</a></li>
 </ul>
 		</section>
 	</div></div>
