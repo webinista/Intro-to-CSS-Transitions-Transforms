@@ -4,14 +4,23 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,user-scalable=yes">
 	<title>Easing Functions</title>
-    <link rel="stylesheet" href="../../s.css" media="screen">
+    <link rel="stylesheet" href="../s.css" media="screen">
 	<style media="screen">
+	    h1{margin:1rem 0 0 0}
+	    p{margin:0 0 1rem 0}
 	    div{
+	        width:470px;
+	        float:left;
+	        position:relative;
+	    }
+	    figure{
 	           width: 8rem;
               height: 8rem;
-                left: 0;
+                left: -40px;
+                 top: -15px;
           background: #909;
             position: relative;
+             display: block;
 
            -moz-transition-property: left;
             -ms-transition-property: left;
@@ -26,8 +35,7 @@
 	    }
 
         .transition{
-
-            left: 600px;
+            left: 300px;
         }
 
         #ease.transition{
@@ -80,10 +88,8 @@
         -webkit-transition-timing-function: steps(4, end);
         }
 
-
-
-        div p{
-            padding-top:3rem;
+        figure p{
+            padding:3rem 0 0 0;
             text-align:center;
         }
 </style>
@@ -91,56 +97,55 @@
 <body>
 
 <article>
-    <h1>Easing functions <button id="all">Run all</button></h1>
-    <p></p>
+    <h1>Easing functions</h1>
+    <p><button class="all">Run all</button></p>
+   <div>
+        <figure id="ease">
+            <p><button>ease</button></p>
+        </figure>
+        <figure id="ease-in">
+            <p><button>ease-in</button></p>
+        </figure>
+        <figure id="ease-out">
+            <p><button>ease-out</button></p>
+        </figure>
 
-    <div id="ease">
-        <p><button>ease</button></p>
+        <figure id="ease-in-out">
+            <p><button>ease-in-out</button></p>
+        </figure>
     </div>
 
-     <div id="linear">
-        <p><button>linear</button></p>
-    </div>
+    <div>
 
-     <div id="ease-in">
-        <p><button>ease-in</button></p>
-    </div>
+        <figure id="linear">
+            <p><button>linear</button></p>
+        </figure>
+        <figure id="steps1start">
+            <p><button>steps(4, start)</button></p>
+        </figure>
 
-     <div id="ease-out">
-        <p><button>ease-out</button></p>
-    </div>
-
-     <div id="ease-in-out">
-        <p><button>ease-in-out</button></p>
-    </div>
-
-    <div id="steps1start">
-        <p><button>steps(4, start)</button></p>
-    </div>
-
-    <div id="steps1end">
-        <p><button>steps(4, end)</button></p>
+        <figure id="steps1end">
+            <p><button>steps(4, end)</button></p>
+        </figure>
     </div>
 </article>
 
 
-    <script>
-     var btns = document.getElementsByTagName('button');
+<script>
+document.body.addEventListener('click',function(e){
+    var btns = document.getElementsByTagName('button');
 
-    var action = function(e){
-       if(e.target.id != 'all'){
+    if( e.target.nodeName == 'BUTTON' ){
+        if(e.target.className != 'all'){
             e.target.parentNode.parentNode.classList.toggle('transition');
             console.log( e.target.parentNode.parentNode.id);
-       } else {
-            for(var x = 1; x < btns.length; x++){
-                 btns[x].parentNode.parentNode.classList.toggle('transition');
+        } else {
+             for(var x = 1; x < btns.length; x++){
+                btns[x].parentNode.parentNode.classList.toggle('transition');
             }
-       }
+        }
     }
-
-    for(var x = 0; x < btns.length; x++){
-        btns[x].addEventListener('click', action, false);
-    }
-    </script>
+},false);
+</script>
 </body>
 </html>
