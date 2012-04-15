@@ -238,12 +238,19 @@
                 -ms-transform: rotate(45deg);
                     transform: rotate(45deg);
         }
-        .stdemo.skew{
-            -webkit-transform: skew(-45deg);
-                 -o-transform: skew(-45deg);
-               -moz-transform: skew(-45deg);
-                -ms-transform: skew(-45deg);
-                    transform: skew(-45deg);
+        .stdemo.skewX{
+            -webkit-transform: skewX(-45deg);
+                 -o-transform: skewX(-45deg);
+               -moz-transform: skewX(-45deg);
+                -ms-transform: skewX(-45deg);
+                    transform: skewX(-45deg);
+        }
+        .stdemo.skewY{
+            -webkit-transform: skewY(-45deg);
+                 -o-transform: skewY(-45deg);
+               -moz-transform: skewY(-45deg);
+                -ms-transform: skewY(-45deg);
+                    transform: skewY(-45deg);
         }
         .stdemo.translate{
             -webkit-transform: translate(-270px,100px);
@@ -870,7 +877,6 @@ transEnd = endNames[ Modernizr.prefixed('transition') ];
                 <li><code>scale(sx[,sy])</code></li>
                 <li><code>scaleX(sx)</code></li>
                 <li><code>scaleY(sy)</code></li>
-                <li><code>skew(a)</code></li>
                 <li><code>skewX(a)</code></li>
                 <li><code>skewY(a)</code></li>
             </ul>
@@ -886,7 +892,8 @@ transEnd = endNames[ Modernizr.prefixed('transition') ];
                 <div class="stdemo"></div>
                 <form>
                     <button type="button" id="rotate">rotate</button>
-                    <button type="button" id="skew">skew</button>
+                    <button type="button" id="skewX">skewX</button>
+                    <button type="button" id="skewY">skewY</button>
                     <button type="button" id="scale">scale</button>
                     <button type="button" id="translate">translate</button>
                     <button type="button">clear</button>
