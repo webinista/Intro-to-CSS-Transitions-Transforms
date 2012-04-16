@@ -177,6 +177,20 @@
     #t2d.close > fieldset,
     #t3d.close > fieldset{visibility: hidden;}
 
+
+    input[type=text]{border: 1px solid #bbb}
+
+    input:focus{
+        outline:none;
+        background: hsl(68, 100%, 50%);
+    }
+
+
+    .trigger{cursor:pointer;}
+
+    .disable{
+        color:#999;
+    }
     /*-----------------
     cube styles
     -----------------*/
@@ -239,13 +253,6 @@
     #cube .top{background: hsla( 24, 100%, 50%, .5);}
     #cube .bottom{background: hsla(187,  87%, 50%, .5);}
 
-    input[type=text]{border: 1px solid #bbb}
-
-    input:focus{
-        outline:none;
-        background: hsl(68, 100%, 50%);
-    }
-
     #cube .front {
       -webkit-transform: rotateY(   0deg ) translateZ( 100px );
          -moz-transform: rotateY(   0deg ) translateZ( 100px );
@@ -304,11 +311,6 @@
 
     #cube .hide{display: none;}
 
-    .trigger{cursor:pointer;}
-
-    .disable{
-        color:#999;
-    }
     </style>
 </head>
 <body>

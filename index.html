@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=1274, user-scalable=no">
 	<link rel="stylesheet" href="themes/ribbon/styles/style.css">
+	<link rel="stylesheet" href="cube.css">
 	  <!--
 		To apply styles to the certain slides
 		use slide ID to get needed elements
@@ -193,7 +194,8 @@
         }
 
         .stdemowrap,
-        #podemowrap{
+        #podemowrap,
+        #perspectivedemo{
             text-align:center;
             border-right: 5px solid #fff;
         }
@@ -206,6 +208,12 @@
              -ms-perspective: 800px;
         }
 
+        #perspdemowrap{
+         -webkit-perspective: 0px;
+              -o-perspective: 0px;
+            -moz-perspective: 0px;
+             -ms-perspective: 0px;
+        }
         .stdemowrap button,
         #podemowrap button{
             -webkit-transform: scale(1.2);
@@ -217,7 +225,7 @@
         }
 
         .stdemo,
-        #podemo{
+        #podemo, #perspectivedemo{
             width: 250px;
             height: 250px;
             background: hsl(210, 100%, 50%);
@@ -372,6 +380,15 @@
                     transform: rotate3d(0,150,0,45deg);
         }
         #podemo{border-left:5px solid #c09;}
+
+        #perspectivedemo{
+            -webkit-transform: translate3d(0,0,100px);
+                 -o-transform: translate3d(0,0,100px);
+               -moz-transform: translate3d(0,0,100px);
+                -ms-transform: translate3d(0,0,100px);
+                    transform: translate3d(0,0,100px);
+       }
+
         .clear{clear:both;}
         .small{font-size:1.2rem;}
 	</style>
@@ -973,30 +990,57 @@ var transEnd = endNames[ Modernizr.prefixed('transition') ];
 			</header>
             <ul>
                 <li><code>backface-visibility</code></li>
+                <li><code>transform-style</code></li>
+                <li><code>transform-origin</code></li>
                 <li><code>perspective</code><br>
                 <span class="small">(not to be confused with the <code class="nobg">perspective()</code> function)</span></li>
-                <li><code>transform-origin</code></li>
                 <li><code>perspective-origin</code></li>
             </ul>
 		</section>
 	</div></div>
 
 
-	<div class="slide shout" id="ShowADemo"><div>
+	<div class="slide" id="BackfaceVisibility"><div>
 		<section>
 			<header>
-				<h2><a href="demos/cube.html" target="_blank">Demo</a></h2>
+				<h2><code>backface-visibility</code></h2>
 			</header>
+            <p><code>visible</code> or <code>hidden</code></p>
+            <div class="backfacedemo">
+                  <div class="cube" id="backfacecube">
+                    <figure class="front bf">1</figure>
+                    <figure class="back bf">2</figure>
+                    <figure class="right bf">3</figure>
+                    <figure class="left bf">4</figure>
+                    <figure class="top bf">5</figure>
+                    <figure class="bottom bf">6</figure>
+                  </div>
+
+            </div>
+
+            <p style="position:absolute; bottom:100px; right:200px"><button type="button" id="backfacetrigger">Toggle backfaces</button></p>
+
   		</section>
 	</div></div>
 
-	<div class="slide shout" id="TweakingYourTransform"><div>
+	<div class="slide" id="TransformStyle"><div>
 		<section>
 			<header>
-				<h2>Tweaking your transforms</h2>
+				<h2><code>transform-style</code></h2>
 			</header>
+            <p><code>flat</code> or <code>preserve-3d</code></p>
+            <div class="backfacedemo">
+                  <div class="uncube" id="transformstylecube">
+                    <figure class="front bf">1</figure>
+                    <figure class="back bf">2</figure>
+                    <figure class="right bf">3</figure>
+                  </div>
+            </div>
+            <p style="position:absolute; bottom:100px; right:200px"><button type="button" id="transformstyletrig">Toggle transform style</button></p>
+
   		</section>
 	</div></div>
+
 
 	<div class="slide" id="TransformOrigin"><div>
 		<section>
@@ -1013,6 +1057,24 @@ var transEnd = endNames[ Modernizr.prefixed('transition') ];
   		</section>
 	</div></div>
 
+	<div class="slide" id="Perspective"><div>
+		<section>
+			<header>
+				<h2><code>perspective</code></h2>
+			</header>
+			<p>Applied to parent element. Smaller = closer; larger = farther</p>
+            <div id="perspdemowrap">
+                <div id="perspectivedemo"></div>
+
+                <form id="podform">
+                    <p class="txtright"><label for="perpsectivec" id="perpsectivelabel">0</label>px
+                    <input type="range" id="perpsectivec" name="perpsectivec" value="200" min="200" max="1000">
+                    <button type="reset">Reset</button></p>
+                </form>
+            </div>
+            </section>
+    </div></div>
+
 	<div class="slide" id="PerspectiveOrigin"><div>
 		<section>
 			<header>
@@ -1023,15 +1085,25 @@ var transEnd = endNames[ Modernizr.prefixed('transition') ];
                 </div>
 
                 <form id="poform">
-                    x: <label for="po_X" id="po_l_Y">0</label>px
+                   <p> x: <label for="po_X" id="po_l_Y">0</label>px
                     <input type="range" id="po_X" name="po_X" value="0" min="-1000" max="1000">
                     y: <label for="po_Y" id="po_l_X">0</label>px
                     <input type="range" id="po_Y" name="po_Y" value="0" min="-1000" max="1000">
-                    <button type="reset">Reset</button>
+                    <button type="reset">Reset</button> </p>
                 </form>
             </div>
             </section>
     </div></div>
+
+
+
+	<div class="slide shout" id="ShowADemo"><div>
+		<section>
+			<header>
+				<h2><a href="demos/cube.html" target="_blank">Demo</a></h2>
+			</header>
+  		</section>
+	</div></div>
 
 	<div class="slide shout" id="CombiningTransitionsTransforms"><div>
 		<section>
@@ -1140,11 +1212,13 @@ var transEnd = endNames[ Modernizr.prefixed('transition') ];
                scbt  = document.getElementById('stackingbtn'),
                 tbt  = document.getElementById('translatebtn'),
                pdbt  = document.getElementById('perspectivedemobtn'),
-              pddbt  = document.getElementById('perspectiveorigindemobtn'),
+              pstvb  = document.getElementById('perpsectivec'),
             stdemos  = document.querySelectorAll('.stdemowrap button'),
             transformorigin = document.getElementById('transformtrigger'),
             pox = document.getElementById('po_X'),
             poy = document.getElementById('po_Y'),
+            bf = document.getElementById('backfacetrigger'),
+            tfs = document.getElementById('transformstyletrig'),
             runtrans;
 
 
@@ -1225,8 +1299,21 @@ var transEnd = endNames[ Modernizr.prefixed('transition') ];
 
             }, false);
 
+        perpsectivec.addEventListener('change', function(e){
+            console.log( e.target.value )
+            var po = document.getElementById('perspdemowrap'),
+                lbl = document.getElementById('perpsectivelabel');
+
+                po.style[Modernizr.prefixed('perspective')] = e.target.value+'px';
+
+                var lt = document.createTextNode(e.target.value);
+                lbl.replaceChild(lt,lbl.childNodes[0]);
+
+
+            }, false);
+
         document.getElementById('poform').addEventListener('reset', function(e){
-             po = document.getElementById('podemowrap');
+             var po = document.getElementById('podemowrap');
 
              po.style[Modernizr.prefixed('perspectiveOrigin')] = '50% 50%';
 
@@ -1235,7 +1322,24 @@ var transEnd = endNames[ Modernizr.prefixed('transition') ];
 
         }, false);
 
+        document.getElementById('podform').addEventListener('reset', function(e){
+             var po = document.getElementById('perspdemowrap');
+             var  lbl = document.getElementById('perpsectivelabel').innerHTML = '0';
+             po.style.cssText = '';
+        }, false);
 
+        bf.addEventListener('click', function(e){
+            var faces = document.getElementById('backfacecube').getElementsByTagName('figure'),
+                len = faces.length;
+
+            for(var i = 0; i < len; i++){
+                Lib.toggleClass(faces[i],'bf');
+            }
+        }, false);
+
+        tfs.addEventListener('click', function(e){
+             Lib.toggleClass(document.getElementById('transformstylecube'),'threed');
+        }, false);
 
     })();
 
