@@ -1,9 +1,9 @@
 .backfacedemo{
-    -webkit-perspective: 1000;
-       -moz-perspective: 1000;
-        -ms-perspective: 1000;
-         -o-perspective: 1000;
-            perspective: 1000;
+    -webkit-perspective: 1000px;
+       -moz-perspective: 1000px;
+        -ms-perspective: 1000px;
+         -o-perspective: 1000px;
+            perspective: 1000px;
 }
 
 .cube, .uncube.threed{
@@ -25,6 +25,10 @@
        -o-transform-style: flat;
           transform-style: flat;
     -webkit-transform: rotate3d(10,10,1,-25deg);
+       -moz-transform: rotate3d(10,10,1,-25deg);
+        -ms-transform: rotate3d(10,10,1,-25deg);
+         -o-transform: rotate3d(10,10,1,-25deg);
+            transform: rotate3d(10,10,1,-25deg);
 }
 
 figure{margin: 0;}
